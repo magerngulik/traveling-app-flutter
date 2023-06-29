@@ -7,7 +7,6 @@ import 'package:healing_apps/logic/login/login_bloc.dart';
 import 'package:healing_apps/logic/package/data_package_bloc.dart';
 import 'package:healing_apps/screens/user/home/widget/home_page_view.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:healing_apps/screens/user/login/view/login_view.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -38,7 +37,7 @@ class _MyAppState extends State<MyApp> {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: HomePageView()),
+          home: const HomePageView()),
     );
   }
 }

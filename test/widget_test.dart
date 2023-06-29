@@ -7,19 +7,38 @@
 
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_test/flutter_test.dart';
 import 'package:healing_apps/data/healing_services/healing_service.dart';
-
-import 'package:healing_apps/main.dart';
 
 void main() async {
   var dio = Dio();
   var data = HealingServices(dioClient: dio);
+  await testLoginService(data, "member@gmail.com", "password");
+  await testget(data, "Get Country");
+}
 
-  var test = await data.getPackage();
-  test.fold((l) {
-    print("data error: ${l}");
-  }, (r) {
-    print("data berhasil: ${r}");
-  });
+Future<void> testLoginService(
+    HealingServices data, String email, String password) async {
+  var testingLoginService = await data.login(email: email, password: password);
+  testingLoginService.fold(
+    (l) {
+      debugPrint('Error type: $l');
+    },
+    (r) {
+      debugPrint('Get data: $r');
+    },
+  );
+}
+
+Future<void> testget(HealingServices data, String title) async {
+  var testingLoginService = await data.getCountry();
+  debugPrint(title);
+  testingLoginService.fold(
+    (l) {
+      debugPrint('Error type: $l');
+      ('Error type: $l');
+    },
+    (r) {
+      debugPrint('Error type: $r');
+    },
+  );
 }

@@ -5,7 +5,7 @@ Future showInfoDialog(String message, {required BuildContext context}) async {
   await showDialog<void>(
     context: context,
     barrierDismissible: true,
-    builder: (BuildContext context) {
+    builder: (context) {
       return Container(
         color: Colors.black.withOpacity(0.4),
         child: Center(

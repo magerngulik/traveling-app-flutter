@@ -10,20 +10,27 @@ abstract class LoginState extends Equatable {
 
 class LoginInitial extends LoginState {}
 
-class Loading extends LoginState {}
+class LoginLoading extends LoginState {}
 
 // ignore: must_be_immutable
-class Loaded extends LoginState {
+class LoginLoaded extends LoginState {
   Map<String, dynamic> dataUser;
-  Loaded({
+  LoginLoaded({
     required this.dataUser,
   });
 }
 
 // ignore: must_be_immutable
-class Error extends LoginState {
+class LoginError extends LoginState {
   String error;
-  Error({
+  LoginError({
     required this.error,
+  });
+}
+
+class LogoutErorr extends LoginState {
+  String logoutError;
+  LogoutErorr({
+    required this.logoutError,
   });
 }

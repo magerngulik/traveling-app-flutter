@@ -2,17 +2,14 @@
 // ignore_for_file: camel_case_types, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
-import 'package:healing_apps/logic/package/data_package_bloc.dart';
-import 'package:healing_apps/screens/user/home/widget/home_page_view.dart';
+import 'package:healing_apps/screens/user/navigator/view/navigator_view.dart';
 import 'package:healing_apps/shared/dialog/show_info_dialog.dart';
-import 'package:healing_apps/shared/show_loading/show_loading.dart';
 
 import 'package:healing_apps/shared/widget/button/q_button1/q_button1.dart';
 
 import '../../../../logic/login/login_bloc.dart';
 import '../../../../shared/show_loading/Q_loading.dart';
 import '../../../../shared/util/validator/validator.dart';
-import '../../../../shared/widget/container/q_box_container/q_box_container.dart';
 import '../../../../shared/widget/container/q_dont_have_account/q_dont_have_accont.dart';
 import '../../../../shared/widget/container/q_icon_apps/q_icon_apps.dart';
 import '../../../../shared/widget/container/q_or/q_or.dart';
@@ -42,19 +39,20 @@ class _LoginViewState extends State<LoginView> {
               child: BlocConsumer<LoginBloc, LoginState>(
                 bloc: login,
                 listener: (context, state) async {
-                  if (state is Loaded) {
+                  if (state is LoginLoaded) {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => HomePageView()),
+                      MaterialPageRoute(
+                          builder: (context) => const NavigatorView()),
                     );
                   }
-                  if (state is Error) {
+                  if (state is LoginError) {
                     await showInfoDialog(state.error, context: context);
                   }
                 },
                 builder: (context, state) {
-                  if (state is Loading) {
-                    return QLoading();
+                  if (state is LoginLoading) {
+                    return const QLoading();
                   }
                   return Form(
                     key: _formKey,

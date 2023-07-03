@@ -4,18 +4,21 @@ import 'package:flutter/material.dart';
 class QCardListRecomendation extends StatelessWidget {
   String image, title;
   double? fontSize;
-  QCardListRecomendation({
-    Key? key,
-    required this.title,
-    required this.image,
-    required this.fontSize,
-  }) : super(key: key);
+  EdgeInsetsGeometry? margin;
+  QCardListRecomendation(
+      {Key? key,
+      required this.title,
+      required this.image,
+      required this.fontSize,
+      this.margin})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 200.0,
       width: 150.0,
+      margin: margin,
       decoration: const BoxDecoration(),
       child: Stack(
         children: [

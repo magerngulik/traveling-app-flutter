@@ -8,16 +8,26 @@ part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  HealingServices healing;
-  LoginBloc({required this.healing}) : super(LoginInitial()) {
+  HealingServices services;
+  LoginBloc({required this.services}) : super(LoginInitial()) {
     on<TryLogin>((event, emit) async {
-      emit(Loading());
+      emit(LoginLoading());
       final result =
-          await healing.login(email: event.email, password: event.password);
+          await services.login(email: event.email, password: event.password);
 
       result.fold((l) {
-        emit(Error(error: l));
-      }, (r) => {emit(Loaded(dataUser: r.cast()))});
+        emit(LoginError(error: l));
+      }, (r) => {emit(LoginLoaded(dataUser: r.cast()))});
+    });
+
+    on<Logout>((event, emit) async {
+      emit(LoginLoading());
+      final result = await services.logout(token: event.token);
+      result.fold((l) {
+        LogoutErorr(logoutError: l);
+      }, (r) {
+        emit(LoginInitial());
+      });
     });
   }
 }

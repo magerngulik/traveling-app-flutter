@@ -12,8 +12,11 @@ import 'package:healing_apps/data/healing_services/healing_service.dart';
 void main() async {
   var dio = Dio();
   var data = HealingServices(dioClient: dio);
-  await testLoginService(data, "member@gmail.com", "password");
-  await testget(data, "Get Country");
+  // await testLoginService(data, "member@gmail.com", "password");
+  // await testget(data, "Get Country");
+  // await testgetCountryByid(data, "Get Country by ID", 5);
+  await testingLogout(
+      data, "Testing Logout", "67|V1SZjPDj5eALyFR71G2pEbRqcqgRd9zddQ3qlCbC");
 }
 
 Future<void> testLoginService(
@@ -35,10 +38,37 @@ Future<void> testget(HealingServices data, String title) async {
   testingLoginService.fold(
     (l) {
       debugPrint('Error type: $l');
-      ('Error type: $l');
     },
     (r) {
-      debugPrint('Error type: $r');
+      debugPrint('Data type: $r');
+    },
+  );
+}
+
+Future<void> testgetCountryByid(
+    HealingServices data, String title, int id) async {
+  var testingLoginService = await data.getPackageByCountryId(id: id);
+  debugPrint(title);
+  testingLoginService.fold(
+    (l) {
+      debugPrint('Error type: $l');
+    },
+    (r) {
+      debugPrint('Data type: $r');
+    },
+  );
+}
+
+Future<void> testingLogout(
+    HealingServices data, String title, String token) async {
+  var testingLoginService = await data.logout(token: token);
+  debugPrint(title);
+  testingLoginService.fold(
+    (l) {
+      debugPrint('Error type: $l');
+    },
+    (r) {
+      debugPrint('Data type: $r');
     },
   );
 }

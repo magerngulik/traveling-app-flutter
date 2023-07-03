@@ -44,9 +44,9 @@ class HealingServices {
           String errorMessage = responseMap?['message'] ??
               "Unauthorized. Please check your credentials.";
           return Left(errorMessage);
-        } else {
-          return Left(e.toString());
         }
+        return const Left(
+            "Server sedang maintance harap login beberapa saat lagi");
       } else {
         return Left(e.toString());
       }
@@ -65,6 +65,41 @@ class HealingServices {
       );
       Map obj = response.data;
       return Right(List<Map<String, dynamic>>.from(obj['data']));
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+  Future<Either<String, List<Map<String, dynamic>>>> getPackageByCountryId(
+      {required int id}) async {
+    try {
+      var response = await dioClient.get(
+        "${baseUrl}api/get-by-location-id?country_id=$id",
+        options: Options(
+          headers: {"Content-Type": "application/json"},
+        ),
+      );
+      Map obj = response.data;
+      return Right(List<Map<String, dynamic>>.from(obj['data']));
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+  Future<Either<String, String>> logout({required String token}) async {
+    try {
+      var response = await dioClient.get(
+        "${baseUrl}api/auth/logout",
+        options: Options(
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization": "Bearer $token"
+          },
+        ),
+      );
+      Map obj = response.data;
+      String message = obj['message'];
+      return Right(message);
     } catch (e) {
       return Left(e.toString());
     }

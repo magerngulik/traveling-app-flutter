@@ -1,10 +1,6 @@
 {
-  "textfield_varification_box": {
-    "prefix": "textfield_varification_box",
-    "body": "Row(\nmainAxisAlignment: MainAxisAlignment.spaceEvenly,\nchildren: List.generate(4, (index) {\nreturn SizedBox(\nwidth: 60,\nchild: Card(\nelevation: 3,\nchild: TextField(\nkeyboardType: TextInputType.number,\nmaxLength: 1,\ntextAlign: TextAlign.center,\nstyle: const TextStyle(fontSize: 20),\nonChanged: (value) {},\ndecoration: const InputDecoration(\ncounterText: '',\nfilled: true,\nfillColor: Colors.white,\ncontentPadding: EdgeInsets.symmetric(vertical: 8),\nborder: OutlineInputBorder(\nborderSide: BorderSide.none,\nborderRadius: BorderRadius.all(\nRadius.circular(12.0),\n),\n),\n),\n),\n),\n);\n}),\n),"
-  },
-  "m_carousel_image": {
-    "prefix": "m_carousel_image",
-    "body": "\n//Letakan di dalam controller\n//CarouselController _carouselController = CarouselController();\n//void moveToIndex(int index) {\n//_carouselController.animateToPage(index);\n//}\n\nStack(\nchildren: [\nCarouselSlider(\ncarouselController: _carouselController,\noptions: CarouselOptions(\nheight: 300,\naspectRatio: 16 / 9,\nviewportFraction: 1,\ninitialPage: 0,\nenableInfiniteScroll: true,\nreverse: false,\nautoPlay: true,\nautoPlayInterval: Duration(seconds: 3),\nautoPlayAnimationDuration: Duration(milliseconds: 800),\nautoPlayCurve: Curves.easeIn,\nenlargeCenterPage: true,\nonPageChanged: (index, reason) {},\nscrollDirection: Axis.horizontal,\n),\nitems: List.generate(exampleImage.length, (index) {\nString item = exampleImage[index];\nreturn Container(\nheight: 160.0,\ndecoration: BoxDecoration(\nimage: DecorationImage(\nimage: NetworkImage(\nitem,\n),\nfit: BoxFit.cover,\n),\n),\n);\n}),\n),\nPositioned(\nbottom: 0,\nright: 0,\nchild: Container(\nheight: 30.0,\nwidth: 100.0,\nmargin: const EdgeInsets.only(\nright: 10.0,\n),\nchild: Row(\nmainAxisAlignment: MainAxisAlignment.center,\nchildren: List.generate(\n3,\n(index) => InkWell(\nonTap: () {\nmoveToIndex(index);\n},\nchild: Container(\nheight: 20,\nwidth: 20,\nmargin: const EdgeInsets.only(\nleft: 10.0,\n),\ndecoration: BoxDecoration(\ncolor: Colors.grey,\n),\n))),\n),\n),\n),\n],\n),"
+  "QCardListRecomendation": {
+    "prefix": "QCardListRecomendation",
+    "body": "QCardListRecomendation(\ntitle: item[\"name\"],\nimage: item[\"image\"],\nfontSize: 15.0,\nmargin: const EdgeInsets.only(\nleft: 10.0,\n),\n),"
   }
 }

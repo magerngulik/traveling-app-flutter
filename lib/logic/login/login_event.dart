@@ -16,3 +16,10 @@ class TryLogin extends LoginEvent {
     required this.password,
   });
 }
+
+class Logout extends LoginEvent {
+  String token;
+  Logout({
+    required this.token,
+  });
+}

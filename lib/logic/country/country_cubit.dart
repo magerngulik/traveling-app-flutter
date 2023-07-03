@@ -10,7 +10,12 @@ class CountryCubit extends Cubit<CountryState> {
   HealingServices services;
   CountryCubit({required this.services}) : super(CountryInitial());
 
-  getAllCountry() {
+  getAllCountry() async {
     emit(CountryLoading());
+
+    var data = await services.getCountry();
+    data.fold((l) {
+      emit(CountryError(message: l));
+    }, (r) => {emit(CountryLoaded(data: r))});
   }
 }

@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'country_cubit.dart';
 
 abstract class CountryState extends Equatable {
@@ -11,6 +12,17 @@ class CountryInitial extends CountryState {}
 
 class CountryLoading extends CountryState {}
 
-class CountryLoaded extends CountryState {}
+// ignore: must_be_immutable
+class CountryLoaded extends CountryState {
+  List<Map<String, dynamic>> data;
+  CountryLoaded({
+    required this.data,
+  });
+}
 
-class CountryError extends CountryState {}
+class CountryError extends CountryState {
+  final String message;
+  const CountryError({
+    required this.message,
+  });
+}

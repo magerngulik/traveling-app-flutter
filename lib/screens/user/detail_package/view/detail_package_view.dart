@@ -1,5 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
+import 'package:healing_apps/screens/user/checkout/view/checkout_view.dart';
+import 'package:healing_apps/screens/user/detail_destination/view/detail_destination_view.dart';
 
 import 'package:healing_apps/shared/typografi/heading/q_heading.dart';
 
@@ -23,7 +25,6 @@ class DetailPackageView extends StatelessWidget {
     var price = convert.formatRupiah(value: item['price']);
     List<Map<String, dynamic>> itinery =
         List<Map<String, dynamic>>.from(item['itinerary']);
-    debugPrint("item data :$itinery");
 
     return Scaffold(
       extendBodyBehindAppBar: true,
@@ -122,12 +123,24 @@ class DetailPackageView extends StatelessWidget {
                     padding: EdgeInsets.zero,
                     itemBuilder: (BuildContext context, int index) {
                       var destination = item['destination'][index];
-                      return CardDestination(
-                        image: destination['image'],
-                        title: destination['name'],
-                        subtitle: destination['description'],
-                        location: destination['location_name'],
-                        margin: const EdgeInsets.only(bottom: 20.0),
+                      return InkWell(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => DetailDestinationView(
+                                      data: destination,
+                                      status: false,
+                                    )),
+                          );
+                        },
+                        child: CardDestination(
+                          image: destination['image'],
+                          title: destination['name'],
+                          subtitle: destination['description'],
+                          location: destination['location_name'],
+                          margin: const EdgeInsets.only(bottom: 20.0),
+                        ),
                       );
                     },
                   ),
@@ -158,7 +171,15 @@ class DetailPackageView extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const CheckoutView(
+                                item: {},
+                              )),
+                    );
+                  },
                   child: const Text(
                     "Checkout",
                   ),

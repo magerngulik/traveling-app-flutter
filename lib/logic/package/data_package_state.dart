@@ -10,18 +10,18 @@ abstract class DataPackageState extends Equatable {
 
 class DataPackageInitial extends DataPackageState {}
 
-class loading extends DataPackageState {}
+class Loading extends DataPackageState {}
 
-class loaded extends DataPackageState {
-  List<Map<String, dynamic>> data;
-  loaded({
+class Loaded extends DataPackageState {
+  final List<Map<String, dynamic>> data;
+  const Loaded({
     required this.data,
   });
 }
 
 class ErrorMessage extends DataPackageState {
-  String error;
-  ErrorMessage({
+  final String error;
+  const ErrorMessage({
     required this.error,
   });
 }

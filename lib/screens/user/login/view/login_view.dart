@@ -118,10 +118,7 @@ class _LoginViewState extends State<LoginView> {
                         ),
                         QButton(
                           title: "Login with Google",
-                          ontap: () {
-                            print(
-                                "email: ${email.text} password: ${password.text} ");
-                          },
+                          ontap: () {},
                           backgroundColor: Colors.black,
                           color: Colors.white,
                           fontSize: 14.0,

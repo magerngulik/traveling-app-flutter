@@ -1,16 +1,18 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
 class QBoxContainer extends StatelessWidget {
   final double height;
   final double width;
-  Color? color;
+  final Color? color;
+  final BorderRadiusGeometry? borderRadius;
 
-  QBoxContainer({
+  const QBoxContainer({
     Key? key,
     required this.height,
     required this.width,
     this.color,
+    this.borderRadius,
   }) : super(key: key);
 
   @override
@@ -18,7 +20,8 @@ class QBoxContainer extends StatelessWidget {
     return Container(
       height: height,
       width: width,
-      decoration: BoxDecoration(color: color ?? Colors.black),
+      decoration: BoxDecoration(
+          color: color ?? Colors.black, borderRadius: borderRadius),
     );
   }
 }

@@ -1,6 +1,3 @@
 {
-  "QCardListRecomendation": {
-    "prefix": "QCardListRecomendation",
-    "body": "QCardListRecomendation(\ntitle: item[\"name\"],\nimage: item[\"image\"],\nfontSize: 15.0,\nmargin: const EdgeInsets.only(\nleft: 10.0,\n),\n),"
-  }
+  
 }

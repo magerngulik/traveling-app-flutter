@@ -7,4 +7,4 @@ class DataPackageEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class eventInitial extends DataPackageEvent {}
+class EventInitial extends DataPackageEvent {}

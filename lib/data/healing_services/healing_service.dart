@@ -7,10 +7,20 @@ class HealingServices {
   HealingServices({
     required this.dioClient,
   });
-  String baseUrl = "http://healing-app.test/";
+  String baseUrl = "https://servicesimager.my.id/";
   Future<Either<String, List<Map<String, dynamic>>>> getPackage() async {
     try {
-      final response = await dioClient.get("${baseUrl}api/active-package");
+      final response = await dioClient.get("${baseUrl}api/package/active");
+      Map obj = response.data;
+      return Right(List<Map<String, dynamic>>.from(obj['data']));
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+  Future<Either<String, List<Map<String, dynamic>>>> getDestination() async {
+    try {
+      final response = await dioClient.get("${baseUrl}api/destination");
       Map obj = response.data;
       return Right(List<Map<String, dynamic>>.from(obj['data']));
     } catch (e) {
@@ -100,6 +110,24 @@ class HealingServices {
       Map obj = response.data;
       String message = obj['message'];
       return Right(message);
+    } catch (e) {
+      return Left(e.toString());
+    }
+  }
+
+  Future<Either<String, List<Map<String, dynamic>>>> getPackagebyDestination(
+      {required int id}) async {
+    try {
+      var response = await dioClient.get(
+        "${baseUrl}api/package/destination/$id",
+        options: Options(
+          headers: {
+            "Content-Type": "application/json",
+          },
+        ),
+      );
+      Map obj = response.data;
+      return Right(List<Map<String, dynamic>>.from(obj['data']));
     } catch (e) {
       return Left(e.toString());
     }

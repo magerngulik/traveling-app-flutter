@@ -25,7 +25,7 @@ class QHeading extends StatelessWidget {
       children: [
         Expanded(
           child: Text(
-            title.toUpperCase(),
+            title,
             style: TextStyle(
               fontSize: fontSize ?? 20,
               fontWeight: FontWeight.bold,

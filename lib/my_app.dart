@@ -5,10 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:healing_apps/data/healing_services/healing_service.dart';
 import 'package:healing_apps/logic/Package_by_id/package_by_id_cubit.dart';
 import 'package:healing_apps/logic/country/country_cubit.dart';
+import 'package:healing_apps/logic/destination/destination_cubit.dart';
 import 'package:healing_apps/logic/login/login_bloc.dart';
+import 'package:healing_apps/logic/package%20by%20destination/package_by_destination_cubit.dart';
 import 'package:healing_apps/logic/package/data_package_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:healing_apps/screens/user/testing_navigator/view/testing_navigator_view.dart';
+import 'package:healing_apps/screens/user/login/view/login_view.dart';
 import 'package:healing_apps/shared/scrool/scrool_behavior.dart';
 
 class MyApp extends StatefulWidget {
@@ -37,17 +39,23 @@ class _MyAppState extends State<MyApp> {
         ),
         BlocProvider(
           create: (context) => PackageByIdCubit(services: services),
+        ),
+        BlocProvider(
+          create: (context) => DestinationCubit(services: services),
+        ),
+        BlocProvider(
+          create: (context) => PackageByDestinationCubit(services: services),
         )
       ],
       child: MaterialApp(
-          title: 'Flutter Demo',
+          title: 'Healing Apps',
           debugShowCheckedModeBanner: false,
           scrollBehavior: MyCustomScrollBehavior(),
           theme: ThemeData(
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
             useMaterial3: true,
           ),
-          home: const TestingNavigatorView()),
+          home: const LoginView()),
     );
   }
 }

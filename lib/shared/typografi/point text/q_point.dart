@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 class QPointText extends StatelessWidget {
-  String title;
-  QPointText({
+  final String title;
+  const QPointText({
     Key? key,
     required this.title,
   }) : super(key: key);

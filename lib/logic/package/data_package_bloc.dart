@@ -11,11 +11,11 @@ class DataPackageBloc extends Bloc<DataPackageEvent, DataPackageState> {
   HealingServices services;
   DataPackageBloc({required this.services}) : super(DataPackageInitial()) {
     on<DataPackageEvent>((event, emit) async {
-      emit(loading());
+      emit(Loading());
       final result = await services.getPackage();
       result.fold((l) {
         emit(ErrorMessage(error: l));
-      }, (r) => {emit(loaded(data: r))});
+      }, (r) => {emit(Loaded(data: r))});
     });
   }
 }

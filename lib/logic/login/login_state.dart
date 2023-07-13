@@ -20,17 +20,16 @@ class LoginLoaded extends LoginState {
   });
 }
 
-// ignore: must_be_immutable
 class LoginError extends LoginState {
-  String error;
-  LoginError({
+  final String error;
+  const LoginError({
     required this.error,
   });
 }
 
 class LogoutErorr extends LoginState {
-  String logoutError;
-  LogoutErorr({
+  final String logoutError;
+  const LogoutErorr({
     required this.logoutError,
   });
 }
